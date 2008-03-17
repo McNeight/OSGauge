@@ -318,7 +318,7 @@ namespace OSGaugesLib
 			TickAlternateLineLength = _TickAlternateLineLength;
 			TicksColor = _TicksColor;
 			NeedleColor = _NeedleColor;
-			_ShowNeedle = !(_NeedleLength > 0);
+			_ShowNeedle = (_NeedleLength > 0);
 
 			InitializeGDI();
 		}
@@ -389,27 +389,32 @@ namespace OSGaugesLib
 		{
 			//_needleWidth = 2 * _radius - 50;
 			_needleWidth = 2*_NeedleLength;
-			_needleHeight = _radius/5;
+			_needleHeight = 2*((int)_radius/10); //has to be an even number!
 
 
-			_needleBitmap = new Bitmap(_needleWidth+2, _needleHeight +2);
+			if(_needleWidth==0 || _needleHeight==0)
+				return;
+			_needleBitmap = new Bitmap(_needleWidth, _needleHeight );
 
 			Graphics g2 = Graphics.FromImage(_needleBitmap);
 			g2.SmoothingMode = SmoothingMode.AntiAlias;
 
 			_needlePath = new GraphicsPath();
 			//_needlePath.AddEllipse(_needleWidth / 2 - _needleHeight / 2, 0, _needleHeight, _needleHeight);
-			_needlePath.AddArc(_needleWidth / 2 - _needleHeight / 2, 0, _needleHeight, _needleHeight, 10, 340);
+
+			//_needlePath.AddArc(_needleWidth / 2 - _needleHeight / 2, 0, _needleHeight, _needleHeight, 10, 340);
+			_needlePath.AddArc(_needleBitmap.Width / 2 - _needleBitmap.Height / 2+1,1, _needleBitmap.Height-2, _needleBitmap.Height-2, 10, 340);
+
 			//g2.FillEllipse(_needleBrush, _needleWidth / 2 - _needleHeight / 2, 0, _needleHeight, _needleHeight);
 			//_needlePath.AddEllipse(_needleWidth / 2 - _needleHeight / 2, 0, _needleHeight, _needleHeight);
 
 
 			_needlePath.FillMode = FillMode.Winding;
 			//_needlePath.StartFigure();
-			_needlePath.AddLine(_needleHeight/2+_needleWidth / 2, _needleHeight / 2 - 3, _needleWidth - 10, _needleHeight / 2 - 3);
-			_needlePath.AddLine(_needleWidth - 10, _needleHeight / 2 - 3, _needleWidth, _needleHeight / 2);
-			_needlePath.AddLine(_needleWidth, _needleHeight / 2, _needleWidth - 10, _needleHeight / 2 + 3);
-			_needlePath.AddLine(_needleWidth - 10, _needleHeight / 2 + 3, _needleHeight / 2 + _needleWidth / 2, _needleHeight / 2 + 3);
+			_needlePath.AddLine(_needleBitmap.Height/2+_needleBitmap.Width / 2-1, _needleBitmap.Height / 2 - 3, _needleBitmap.Width - 10, _needleBitmap.Height / 2 - 3);
+			_needlePath.AddLine(_needleBitmap.Width - 10, _needleBitmap.Height / 2 - 3, _needleBitmap.Width, _needleBitmap.Height / 2);
+			_needlePath.AddLine(_needleBitmap.Width, _needleBitmap.Height / 2, _needleBitmap.Width - 10, _needleBitmap.Height / 2 + 3);
+			_needlePath.AddLine(_needleBitmap.Width - 10, _needleBitmap.Height / 2 + 3, _needleBitmap.Height / 2 + _needleBitmap.Width / 2-1, _needleBitmap.Height / 2 + 3);
 			_needlePath.Flatten();
 			//_needlePath.CloseFigure();
 
@@ -419,7 +424,7 @@ namespace OSGaugesLib
 				g2.DrawPath(_ticksPen, _needlePath);
 			_needlePath.Reset();
 
-			_needlePath.AddLine(6 * _needleWidth / 10, _needleHeight / 2, 9 * _needleWidth / 10, _needleHeight / 2);
+			_needlePath.AddLine(6 * _needleBitmap.Width / 10, _needleBitmap.Height / 2, 9 * _needleBitmap.Width / 10, _needleBitmap.Height / 2);
 			g2.DrawPath(_ticksPen, _needlePath);
 			// _needlePath.AddLine(_needleWidth / 2, _needleHeight / 2, _needleWidth, _needleHeight / 2);
 
@@ -438,7 +443,8 @@ namespace OSGaugesLib
 			float _angle = _TicksArcStart + (Value-Minimum) * (_TicksArcEnd - _TicksArcStart) / (_Maximum - _Minimum);
 			g3.TranslateTransform(_center.X, _center.Y);
 			g3.RotateTransform(_angle);
-			g3.DrawImage(_needleBitmap, -_needleWidth / 2, -_needleHeight / 2);
+			
+			g3.DrawImage(_needleBitmap, -_needleBitmap.Width/ 2, -_needleBitmap.Height/ 2);
 			g.SmoothingMode = SmoothingMode.AntiAlias;
 
 			Bitmap _sumBitmap = new Bitmap(Width, Height);
@@ -501,7 +507,7 @@ namespace OSGaugesLib
 					_Value = _Minimum;
 				if (_Value > _Maximum)
 					_Value = _Maximum;
-
+				if(_ShowNeedle)
 				PaintNeedle(this.CreateGraphics());
 			}
 		}
