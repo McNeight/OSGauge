@@ -32,9 +32,11 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.osG_NumericDisplay1 = new OSGaugesLib.OSG_NumericDisplay(this.components);
+            this.osG_NumericDisplay2 = new OSGaugesLib.OSG_NumericDisplay(this.components);
             this.osG_Round3 = new OSGaugesLib.OSG_Round(this.components);
             this.osG_Round2 = new OSGaugesLib.OSG_Round(this.components);
             this.osG_Round1 = new OSGaugesLib.OSG_Round(this.components);
+            this.osG_NumericDisplay3 = new OSGaugesLib.OSG_NumericDisplay(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +51,7 @@
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(338, 475);
+            this.trackBar2.Location = new System.Drawing.Point(32, 439);
             this.trackBar2.Maximum = 750000;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(195, 42);
@@ -58,21 +60,41 @@
             // 
             // osG_NumericDisplay1
             // 
-            this.osG_NumericDisplay1.BorderColorInside = System.Drawing.Color.Gray;
-            this.osG_NumericDisplay1.BorderColorOutside = System.Drawing.Color.LightGray;
-            this.osG_NumericDisplay1.BorderWidth = 3;
+            this.osG_NumericDisplay1.BorderColorInside = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.osG_NumericDisplay1.BorderColorOutside = System.Drawing.Color.White;
+            this.osG_NumericDisplay1.BorderWidth = 4;
             this.osG_NumericDisplay1.CenterColor = System.Drawing.Color.WhiteSmoke;
             this.osG_NumericDisplay1.Decimals = 2;
-            this.osG_NumericDisplay1.Font = new System.Drawing.Font("Sylfaen", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.osG_NumericDisplay1.Location = new System.Drawing.Point(369, 400);
+            this.osG_NumericDisplay1.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.osG_NumericDisplay1.Location = new System.Drawing.Point(32, 403);
             this.osG_NumericDisplay1.Name = "osG_NumericDisplay1";
-            this.osG_NumericDisplay1.NrOfDigits = 4;
-            this.osG_NumericDisplay1.Size = new System.Drawing.Size(132, 37);
-            this.osG_NumericDisplay1.SurroundColor = System.Drawing.Color.DarkGray;
-            this.osG_NumericDisplay1.TabIndex = 7;
+            this.osG_NumericDisplay1.NrOfDigits = 6;
+            this.osG_NumericDisplay1.ShadowBias = 1;
+            this.osG_NumericDisplay1.Size = new System.Drawing.Size(134, 30);
+            this.osG_NumericDisplay1.SurroundColor = System.Drawing.Color.Silver;
+            this.osG_NumericDisplay1.TabIndex = 9;
             this.osG_NumericDisplay1.TextColor = System.Drawing.Color.Black;
             this.osG_NumericDisplay1.TextShadowColor = System.Drawing.Color.WhiteSmoke;
-            this.osG_NumericDisplay1.Value = 33F;
+            this.osG_NumericDisplay1.Value = 0F;
+            // 
+            // osG_NumericDisplay2
+            // 
+            this.osG_NumericDisplay2.BorderColorInside = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.osG_NumericDisplay2.BorderColorOutside = System.Drawing.Color.Empty;
+            this.osG_NumericDisplay2.BorderWidth = 2;
+            this.osG_NumericDisplay2.CenterColor = System.Drawing.Color.WhiteSmoke;
+            this.osG_NumericDisplay2.Decimals = 2;
+            this.osG_NumericDisplay2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.osG_NumericDisplay2.Location = new System.Drawing.Point(258, 403);
+            this.osG_NumericDisplay2.Name = "osG_NumericDisplay2";
+            this.osG_NumericDisplay2.NrOfDigits = 3;
+            this.osG_NumericDisplay2.ShadowBias = 1;
+            this.osG_NumericDisplay2.Size = new System.Drawing.Size(112, 28);
+            this.osG_NumericDisplay2.SurroundColor = System.Drawing.Color.Silver;
+            this.osG_NumericDisplay2.TabIndex = 0;
+            this.osG_NumericDisplay2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.osG_NumericDisplay2.TextShadowColor = System.Drawing.Color.WhiteSmoke;
+            this.osG_NumericDisplay2.Value = 0F;
             // 
             // osG_Round3
             // 
@@ -162,12 +184,33 @@
             this.osG_Round1.TrimWidth = 6;
             this.osG_Round1.Value = 50;
             // 
+            // osG_NumericDisplay3
+            // 
+            this.osG_NumericDisplay3.BorderColorInside = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.osG_NumericDisplay3.BorderColorOutside = System.Drawing.Color.Silver;
+            this.osG_NumericDisplay3.BorderWidth = 2;
+            this.osG_NumericDisplay3.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.osG_NumericDisplay3.Decimals = 2;
+            this.osG_NumericDisplay3.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.osG_NumericDisplay3.Location = new System.Drawing.Point(270, 437);
+            this.osG_NumericDisplay3.Name = "osG_NumericDisplay3";
+            this.osG_NumericDisplay3.NrOfDigits = 3;
+            this.osG_NumericDisplay3.ShadowBias = 1;
+            this.osG_NumericDisplay3.Size = new System.Drawing.Size(106, 33);
+            this.osG_NumericDisplay3.SurroundColor = System.Drawing.Color.DarkRed;
+            this.osG_NumericDisplay3.TabIndex = 1;
+            this.osG_NumericDisplay3.TextColor = System.Drawing.Color.WhiteSmoke;
+            this.osG_NumericDisplay3.TextShadowColor = System.Drawing.Color.Black;
+            this.osG_NumericDisplay3.Value = 0F;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 551);
+            this.Controls.Add(this.osG_NumericDisplay3);
             this.Controls.Add(this.osG_NumericDisplay1);
+            this.Controls.Add(this.osG_NumericDisplay2);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.osG_Round3);
             this.Controls.Add(this.osG_Round2);
@@ -189,8 +232,10 @@
 
         private System.Windows.Forms.TrackBar trackBar1;
         private OSGaugesLib.OSG_Round osG_Round1;
-        private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay1;
         private System.Windows.Forms.TrackBar trackBar2;
+        private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay2;
+        private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay1;
+        private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay3;
 
 
 
