@@ -29,5 +29,10 @@ namespace OSGaugesTest
             trackBar1.Maximum = osG_Round2.Maximum;
             trackBar1.Minimum = osG_Round2.Minimum;
         }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            osG_NumericDisplay1.Value = (float)trackBar2.Value / 100;
+        }
     }
 }

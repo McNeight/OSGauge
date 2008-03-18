@@ -30,11 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.osG_NumericDisplay1 = new OSGaugesLib.OSG_NumericDisplay(this.components);
             this.osG_Round3 = new OSGaugesLib.OSG_Round(this.components);
             this.osG_Round2 = new OSGaugesLib.OSG_Round(this.components);
             this.osG_Round1 = new OSGaugesLib.OSG_Round(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.SuspendLayout();
             // 
             // trackBar1
@@ -45,15 +47,32 @@
             this.trackBar1.TabIndex = 3;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // trackBar2
+            // 
+            this.trackBar2.Location = new System.Drawing.Point(338, 475);
+            this.trackBar2.Maximum = 750000;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(195, 42);
+            this.trackBar2.TabIndex = 8;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            // 
             // osG_NumericDisplay1
             // 
-            this.osG_NumericDisplay1.Decimals = 4;
-            this.osG_NumericDisplay1.Location = new System.Drawing.Point(338, 447);
+            this.osG_NumericDisplay1.BorderColorInside = System.Drawing.Color.Gray;
+            this.osG_NumericDisplay1.BorderColorOutside = System.Drawing.Color.LightGray;
+            this.osG_NumericDisplay1.BorderWidth = 3;
+            this.osG_NumericDisplay1.CenterColor = System.Drawing.Color.WhiteSmoke;
+            this.osG_NumericDisplay1.Decimals = 2;
+            this.osG_NumericDisplay1.Font = new System.Drawing.Font("Sylfaen", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.osG_NumericDisplay1.Location = new System.Drawing.Point(369, 400);
             this.osG_NumericDisplay1.Name = "osG_NumericDisplay1";
-            this.osG_NumericDisplay1.NrOfDigits = 10;
-            this.osG_NumericDisplay1.Size = new System.Drawing.Size(195, 17);
+            this.osG_NumericDisplay1.NrOfDigits = 4;
+            this.osG_NumericDisplay1.Size = new System.Drawing.Size(132, 37);
+            this.osG_NumericDisplay1.SurroundColor = System.Drawing.Color.DarkGray;
             this.osG_NumericDisplay1.TabIndex = 7;
-            this.osG_NumericDisplay1.Value = 12254.31F;
+            this.osG_NumericDisplay1.TextColor = System.Drawing.Color.Black;
+            this.osG_NumericDisplay1.TextShadowColor = System.Drawing.Color.WhiteSmoke;
+            this.osG_NumericDisplay1.Value = 33F;
             // 
             // osG_Round3
             // 
@@ -147,8 +166,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 529);
+            this.ClientSize = new System.Drawing.Size(711, 551);
             this.Controls.Add(this.osG_NumericDisplay1);
+            this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.osG_Round3);
             this.Controls.Add(this.osG_Round2);
             this.Controls.Add(this.osG_Round1);
@@ -157,6 +177,7 @@
             this.Text = "Speed Gauge Test Form";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,6 +190,7 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private OSGaugesLib.OSG_Round osG_Round1;
         private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay1;
+        private System.Windows.Forms.TrackBar trackBar2;
 
 
 
