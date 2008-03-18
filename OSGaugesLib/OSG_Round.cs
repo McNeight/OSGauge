@@ -9,7 +9,7 @@ using System.Drawing.Drawing2D;
 
 namespace OSGaugesLib
 {
-	public partial class OSG_Round : Panel, OSG_IRound
+	public partial class OSG_Round : Panel
 	{
 
 
@@ -461,8 +461,12 @@ namespace OSGaugesLib
 
 
 
+		
+		
+		
+		
+		
 
-		#region OSG_IRound Members
 
 
 		private int _Minimum = 0;
@@ -512,7 +516,6 @@ namespace OSGaugesLib
 			}
 		}
 
-		#endregion
 
 
 		private void OSG_Round_Resize(object sender, EventArgs e)

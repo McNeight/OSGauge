@@ -35,6 +35,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OSG_NumericDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OSG_NumericDisplay.Designer.cs">
+      <DependentUpon>OSG_NumericDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="OSG_IRound.cs" />
     <Compile Include="OSG_Round.cs">
       <SubType>Component</SubType>
@@ -51,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="OSG_NumericDisplay.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OSG_NumericDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OSG_Round.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OSG_Round.cs</DependentUpon>
