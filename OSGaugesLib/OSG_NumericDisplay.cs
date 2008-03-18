@@ -14,7 +14,7 @@ namespace OSGaugesLib
 
 
         #region property NrOfDigits : int
-        private int _NrOfDigits=3;
+        private int _NrOfDigits = 3;
         public int NrOfDigits
         {
             get { return _NrOfDigits; }
@@ -23,7 +23,7 @@ namespace OSGaugesLib
         #endregion
 
         #region property Decimals : int
-        private int _Decimals=2;
+        private int _Decimals = 2;
         public int Decimals
         {
             get { return _Decimals; }
@@ -115,7 +115,7 @@ namespace OSGaugesLib
         #endregion
 
         #region property TextColor : Color
-        private Color _TextColor=Color.Black;
+        private Color _TextColor = Color.Black;
         public Color TextColor
         {
             get { return _TextColor; }
@@ -124,7 +124,7 @@ namespace OSGaugesLib
         #endregion
 
         #region property TextShadowColor : Color
-        private Color _TextShadowColor=Color.Gray;
+        private Color _TextShadowColor = Color.Gray;
         public Color TextShadowColor
         {
             get { return _TextShadowColor; }
@@ -132,7 +132,14 @@ namespace OSGaugesLib
         }
         #endregion
 
-
+        #region property ShadowBias : int
+        private int _ShadowBias = 1;
+        public int ShadowBias
+        {
+            get { return _ShadowBias; }
+            set { _ShadowBias = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
 
 
 
@@ -161,9 +168,7 @@ namespace OSGaugesLib
             if ((int)_newWidth != Width || (int)_newHeight != Height)
             {
                 Width = (int)_newWidth;
-
                 Height = (int)_newHeight;
-
                 dbBitmap = new Bitmap(Width, Height);
                 dbGraphics = Graphics.FromImage(dbBitmap);
             }
@@ -195,9 +200,9 @@ namespace OSGaugesLib
                 _digits[chr] = new Bitmap((int)_digitSize.Width, (int)_digitSize.Height);
                 g = Graphics.FromImage(_digits[chr]);
                 g.FillRectangle(lgb, rf);
-                
-
-                g.DrawString(chr, Font, _shadowBrush, 1, 1);
+                g.DrawLine(Pens.Black, 0, 0, 0, (int)_digitSize.Height);
+                g.DrawLine(Pens.White, 1, 0, 1, (int)_digitSize.Height);
+                g.DrawString(chr, Font, _shadowBrush, _ShadowBias, _ShadowBias);
                 g.DrawString(chr, Font, _textBrush, 0, 0);
             }
 
@@ -206,22 +211,27 @@ namespace OSGaugesLib
             _digits[chr] = new Bitmap((int)_digitSize.Width, (int)_digitSize.Height);
             g = Graphics.FromImage(_digits[chr]);
             g.FillRectangle(lgb, rf);
-            g.DrawString(chr, Font, Brushes.Black, 0, 0);
-
+            g.DrawLine(Pens.Black, 0, 0, 0, (int)_digitSize.Height);
+            g.DrawLine(Pens.White, 1, 0, 1, (int)_digitSize.Height);
+            g.DrawString(chr, Font, _shadowBrush, _ShadowBias, _ShadowBias);
+            g.DrawString(chr, Font, _textBrush, 0, 0);
 
             chr = "-";
             _digits[chr] = new Bitmap((int)_digitSize.Width, (int)_digitSize.Height);
             g = Graphics.FromImage(_digits[chr]);
             g.FillRectangle(lgb, rf);
-            g.DrawString(chr, Font, Brushes.Black, 0, 0);
-
+            g.DrawLine(Pens.Black, 0, 0, 0, (int)_digitSize.Height);
+            g.DrawLine(Pens.White, 1, 0, 1, (int)_digitSize.Height);
+            g.DrawString(chr, Font, _shadowBrush, _ShadowBias, _ShadowBias);
+            g.DrawString(chr, Font, _textBrush, 0, 0);
+            
         }
 
 
 
 
 
-        private void DrawOrnament(ref Graphics g)
+        private void DrawOrnament(Graphics g)
         {
             GraphicsPath gp;
 
@@ -276,13 +286,14 @@ namespace OSGaugesLib
 
 
 
-        private void DrawValue(ref Graphics g)
+        private void DrawValue(Graphics g)
         {
-            RecalculateSize();
-
-            DrawOrnament(ref g);
+            //RecalculateSize();
 
 
+            DrawOrnament(dbGraphics);
+            
+            
 
             int x = Convert.ToInt32(((_Value * (float)Math.Pow(10, _Decimals))) / Math.Pow(10, _Decimals));
 
@@ -304,20 +315,25 @@ namespace OSGaugesLib
             _pad += _NrOfDigits;
             _pad -= _digitsChars.Length;
 
-
-            //Console.WriteLine(_pad);
+            
             for (int i = 0; i < _pad; i++)
             {
                 int _left = (int)(i * _digitSize.Width);
-                g.DrawImageUnscaled(_digits["0"], _left + _BorderWidth, _BorderWidth);
+                dbGraphics.DrawImage(_digits["0"], _left + _BorderWidth, _BorderWidth);
+
             }
 
-
+            
             for (int i = _pad; i < _pad + _digitsChars.Length; i++)
             {
                 int _left = (int)(i * _digitSize.Width);
-                g.DrawImageUnscaled(_digits[_digitsChars[i - _pad].ToString()], _left + _BorderWidth, _BorderWidth);
+                dbGraphics.DrawImage(_digits[_digitsChars[i - _pad].ToString()], _left + _BorderWidth, _BorderWidth);
             }
+
+
+            
+            g.DrawImage(dbBitmap, 0, 0);
+
 
             //CreateGraphics().DrawImage(dbBitmap,0,0);
 
@@ -334,6 +350,10 @@ namespace OSGaugesLib
         public OSG_NumericDisplay()
         {
             InitializeComponent();
+            this.SetStyle(
+            ControlStyles.UserPaint |
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.DoubleBuffer, true);
             PreDrawDigits();
         }
 
@@ -341,7 +361,12 @@ namespace OSGaugesLib
         {
             container.Add(this);
 
+
             InitializeComponent();
+            this.SetStyle(
+            ControlStyles.UserPaint |
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.DoubleBuffer, true);
             PreDrawDigits();
         }
 
@@ -357,12 +382,16 @@ namespace OSGaugesLib
 
             //dbGraphics = Graphics.FromImage(dbBitmap);
             //Graphics g=e.Graphics;            DrawValue(ref g);
-            DrawValue(ref dbGraphics);
-            e.Graphics.DrawImage(dbBitmap, 0, 0);
+            DrawValue(e.Graphics);
+            //e.Graphics.DrawImage(dbBitmap, 0, 0);
 
         }
 
-
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            //base.OnPaint(e);
+            DrawValue(e.Graphics);
+        }
 
 
 
