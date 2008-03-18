@@ -14,7 +14,7 @@ namespace OSGaugesLib
 
 
         #region property NrOfDigits : int
-        private int _NrOfDigits;
+        private int _NrOfDigits=3;
         public int NrOfDigits
         {
             get { return _NrOfDigits; }
@@ -23,7 +23,7 @@ namespace OSGaugesLib
         #endregion
 
         #region property Decimals : int
-        private int _Decimals;
+        private int _Decimals=2;
         public int Decimals
         {
             get { return _Decimals; }
@@ -35,10 +35,23 @@ namespace OSGaugesLib
 
         #region property Font : Font
         private Font _Font = new Font("serif", 10f);
-        public new Font Font
+        public override Font Font
         {
-            get { return _Font; }
-            set { try { _Font = value; RecalculateSize(); } catch (Exception) { } }
+            get { return base.Font; }
+            set
+            {
+                try
+                {
+                    if (value == Font)
+                        return;
+                    base.Font = value;
+                    RecalculateSize(); PreDrawDigits();
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.Message);
+                }
+            }
         }
         #endregion
 
@@ -48,12 +61,76 @@ namespace OSGaugesLib
         public float Value
         {
             get { return _Value; }
-            set { _Value = value; }
+            set { _Value = value; Invalidate(); }
         }
         #endregion
 
 
 
+
+        #region property BorderWidth : int
+        private int _BorderWidth = 2;
+        public int BorderWidth
+        {
+            get { return _BorderWidth; }
+            set { _BorderWidth = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
+
+
+        #region property CenterColor : Color
+        private Color _CenterColor = Color.WhiteSmoke;
+        public Color CenterColor
+        {
+            get { return _CenterColor; }
+            set { _CenterColor = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
+
+        #region property SurroundColor : Color
+        private Color _SurroundColor = Color.Silver;
+        public Color SurroundColor
+        {
+            get { return _SurroundColor; }
+            set { _SurroundColor = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
+
+        #region property BorderColorOutside : Color
+        private Color _BorderColorOutside;
+        public Color BorderColorOutside
+        {
+            get { return _BorderColorOutside; }
+            set { _BorderColorOutside = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
+
+        #region property BorderColorInside : Color
+        private Color _BorderColorInside;
+        public Color BorderColorInside
+        {
+            get { return _BorderColorInside; }
+            set { _BorderColorInside = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
+
+        #region property TextColor : Color
+        private Color _TextColor=Color.Black;
+        public Color TextColor
+        {
+            get { return _TextColor; }
+            set { _TextColor = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
+
+        #region property TextShadowColor : Color
+        private Color _TextShadowColor=Color.Gray;
+        public Color TextShadowColor
+        {
+            get { return _TextShadowColor; }
+            set { _TextShadowColor = value; PreDrawDigits(); Invalidate(); }
+        }
+        #endregion
 
 
 
@@ -78,10 +155,18 @@ namespace OSGaugesLib
             _newWidth += _NrOfDigits * _digitSize.Width;
             _newHeight = _digitSize.Height;
 
-            Width = (int)_newWidth;
-            Height = (int)_newHeight;
+            _newWidth += 2 * _BorderWidth;
+            _newHeight += 2 * _BorderWidth;
 
+            if ((int)_newWidth != Width || (int)_newHeight != Height)
+            {
+                Width = (int)_newWidth;
 
+                Height = (int)_newHeight;
+
+                dbBitmap = new Bitmap(Width, Height);
+                dbGraphics = Graphics.FromImage(dbBitmap);
+            }
         }
 
 
@@ -94,32 +179,109 @@ namespace OSGaugesLib
             RecalculateSize();
             string chr = "";
             Graphics g;
+
+            RectangleF rf = new Rectangle(0, 0, (int)_digitSize.Width, (int)_digitSize.Height);
+            RectangleF rf2 = rf;
+            rf2.Height /= 2;
+            LinearGradientBrush lgb = new LinearGradientBrush(rf2, _CenterColor, _SurroundColor, 270f);
+            lgb.WrapMode = WrapMode.TileFlipXY;
+
+            SolidBrush _shadowBrush = new SolidBrush(_TextShadowColor);
+            SolidBrush _textBrush = new SolidBrush(_TextColor);
+
             for (int i = 0; i < 10; i++)
             {
                 chr = i.ToString();
-
                 _digits[chr] = new Bitmap((int)_digitSize.Width, (int)_digitSize.Height);
                 g = Graphics.FromImage(_digits[chr]);
-                g.DrawString(chr, Font, Brushes.Black, 0, 0);
+                g.FillRectangle(lgb, rf);
+                
+
+                g.DrawString(chr, Font, _shadowBrush, 1, 1);
+                g.DrawString(chr, Font, _textBrush, 0, 0);
             }
+
 
             chr = ".";
             _digits[chr] = new Bitmap((int)_digitSize.Width, (int)_digitSize.Height);
             g = Graphics.FromImage(_digits[chr]);
+            g.FillRectangle(lgb, rf);
             g.DrawString(chr, Font, Brushes.Black, 0, 0);
+
 
             chr = "-";
             _digits[chr] = new Bitmap((int)_digitSize.Width, (int)_digitSize.Height);
             g = Graphics.FromImage(_digits[chr]);
+            g.FillRectangle(lgb, rf);
             g.DrawString(chr, Font, Brushes.Black, 0, 0);
 
         }
 
 
 
-        private void DrawValue(Graphics g)
+
+
+        private void DrawOrnament(ref Graphics g)
+        {
+            GraphicsPath gp;
+
+            Rectangle r;
+            LinearGradientBrush lgb;
+            if (_BorderWidth < 2) _BorderWidth = 2;
+            r = new Rectangle(0, 0, Width, _BorderWidth / 2);
+            lgb = new LinearGradientBrush(r, _BorderColorOutside, _BorderColorInside, 90f);
+            lgb.WrapMode = WrapMode.TileFlipXY;
+            gp = new GraphicsPath();
+            gp.AddLine(0, 0, Width, 0);
+            gp.AddLine(Width, 0, Width - _BorderWidth, _BorderWidth);
+            gp.AddLine(Width - _BorderWidth, _BorderWidth, _BorderWidth, _BorderWidth);
+            gp.AddLine(_BorderWidth, _BorderWidth, 0, 0);
+            g.FillPath(lgb, gp);
+
+
+            r = new Rectangle(0, Height - _BorderWidth, Width, _BorderWidth / 2);
+            lgb = new LinearGradientBrush(r, _BorderColorOutside, _BorderColorInside, 90f);
+            lgb.WrapMode = WrapMode.TileFlipXY;
+            gp = new GraphicsPath();
+            gp.AddLine(_BorderWidth, Height - _BorderWidth, Width - _BorderWidth, Height - _BorderWidth);
+            gp.AddLine(Width - _BorderWidth, Height - _BorderWidth, Width, Height);
+            gp.AddLine(Width, Height, 0, Height);
+            gp.AddLine(0, Height, _BorderWidth, Height - _BorderWidth);
+            g.FillPath(lgb, gp);
+
+            r = new Rectangle(0, 0, _BorderWidth / 2, Height);
+            lgb = new LinearGradientBrush(r, _BorderColorOutside, _BorderColorInside, 0f);
+            lgb.WrapMode = WrapMode.TileFlipXY;
+            gp = new GraphicsPath();
+            gp.AddLine(0, 0, _BorderWidth, _BorderWidth);
+            gp.AddLine(_BorderWidth, _BorderWidth, _BorderWidth, Height - _BorderWidth);
+            gp.AddLine(_BorderWidth, Height - _BorderWidth, 0, Height);
+            gp.AddLine(0, Height, 0, 0);
+            g.FillPath(lgb, gp);
+
+            r = new Rectangle(Width - _BorderWidth, 0, _BorderWidth / 2, Height);
+            lgb = new LinearGradientBrush(r, _BorderColorOutside, _BorderColorInside, 0f);
+            lgb.WrapMode = WrapMode.TileFlipXY;
+            gp = new GraphicsPath();
+            gp.AddLine(Width, 0, Width, Height);
+            gp.AddLine(Width, Height, Width - _BorderWidth, Height - _BorderWidth);
+            gp.AddLine(Width - _BorderWidth, Height - _BorderWidth, Width - _BorderWidth, _BorderWidth);
+            gp.AddLine(Width - _BorderWidth, _BorderWidth, Width, 0);
+            g.FillPath(lgb, gp);
+
+        }
+
+
+
+
+
+
+        private void DrawValue(ref Graphics g)
         {
             RecalculateSize();
+
+            DrawOrnament(ref g);
+
 
 
             int x = Convert.ToInt32(((_Value * (float)Math.Pow(10, _Decimals))) / Math.Pow(10, _Decimals));
@@ -128,8 +290,8 @@ namespace OSGaugesLib
             string _digitsString = ((Convert.ToInt32(_Value * (float)Math.Pow(10, _Decimals))) / Math.Pow(10, _Decimals)).ToString();
 
 
-            _digitsString = String.Format("{0:0." + new string('0', _Decimals) + "}", 44.232344223f);
-            Console.WriteLine("_digitsString :  {0} ", _digitsString);
+            _digitsString = String.Format("{0:0." + new string('0', _Decimals) + "}", _Value);
+            //Console.WriteLine("_digitsString :  {0} ", _digitsString);
 
 
             char[] _digitsChars = _digitsString.ToCharArray();
@@ -144,13 +306,21 @@ namespace OSGaugesLib
 
 
             //Console.WriteLine(_pad);
+            for (int i = 0; i < _pad; i++)
+            {
+                int _left = (int)(i * _digitSize.Width);
+                g.DrawImageUnscaled(_digits["0"], _left + _BorderWidth, _BorderWidth);
+            }
 
 
             for (int i = _pad; i < _pad + _digitsChars.Length; i++)
             {
                 int _left = (int)(i * _digitSize.Width);
-                g.DrawImageUnscaled(_digits[_digitsChars[i - _pad].ToString()], _left, 0);
+                g.DrawImageUnscaled(_digits[_digitsChars[i - _pad].ToString()], _left + _BorderWidth, _BorderWidth);
             }
+
+            //CreateGraphics().DrawImage(dbBitmap,0,0);
+
         }
 
 
@@ -175,15 +345,27 @@ namespace OSGaugesLib
             PreDrawDigits();
         }
 
+        Bitmap dbBitmap;
+        Graphics dbGraphics;
         private void OSG_NumericDisplay_Paint(object sender, PaintEventArgs e)
         {
+            /*
             e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
             e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            e.Graphics.DrawRectangle(Pens.Red, 0, 0, Width - 1, Height - 1);
-            DrawValue(e.Graphics);
+            */
+
+            //dbGraphics = Graphics.FromImage(dbBitmap);
+            //Graphics g=e.Graphics;            DrawValue(ref g);
+            DrawValue(ref dbGraphics);
+            e.Graphics.DrawImage(dbBitmap, 0, 0);
 
         }
+
+
+
+
+
 
         private void OSG_NumericDisplay_Resize(object sender, EventArgs e)
         {
