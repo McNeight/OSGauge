@@ -1,6 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
+# SharpDevelop 2.2.1.2648
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSGaugesLib", "OSGaugesLib\OSGaugesLib.csproj", "{FF11B6D0-5346-4FB3-8D60-00ACCF28201A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSGaugesTest", "OSGaugesTest\OSGaugesTest.csproj", "{65E4FEEF-C858-4048-BC97-475AFC9F2270}"
