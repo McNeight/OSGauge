@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.oS_LinearGauge1 = new OSGaugesLib.OS_LinearGauge(this.components);
             this.osG_NumericDisplay3 = new OSGaugesLib.OSG_NumericDisplay(this.components);
             this.osG_NumericDisplay1 = new OSGaugesLib.OSG_NumericDisplay(this.components);
             this.osG_NumericDisplay2 = new OSGaugesLib.OSG_NumericDisplay(this.components);
             this.osG_Round3 = new OSGaugesLib.OSG_Round(this.components);
             this.osG_Round2 = new OSGaugesLib.OSG_Round(this.components);
             this.osG_Round1 = new OSGaugesLib.OSG_Round(this.components);
-            this.oS_LinearGauge1 = new OSGaugesLib.OS_LinearGauge(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.SuspendLayout();
@@ -59,6 +59,28 @@
             this.trackBar2.TabIndex = 8;
             this.trackBar2.TickFrequency = 100000;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            // 
+            // oS_LinearGauge1
+            // 
+            this.oS_LinearGauge1.CenterColor = System.Drawing.Color.White;
+            this.oS_LinearGauge1.IndicatorType = OSGaugesLib.IndicatorType.Line;
+            this.oS_LinearGauge1.Location = new System.Drawing.Point(477, 257);
+            this.oS_LinearGauge1.Maximum = 10;
+            this.oS_LinearGauge1.Minimum = 0;
+            this.oS_LinearGauge1.Name = "oS_LinearGauge1";
+            this.oS_LinearGauge1.Reverse = false;
+            this.oS_LinearGauge1.Size = new System.Drawing.Size(58, 100);
+            this.oS_LinearGauge1.SurroundColor = System.Drawing.Color.Silver;
+            this.oS_LinearGauge1.TabIndex = 10;
+            this.oS_LinearGauge1.TickAlternateFrequency = 5;
+            this.oS_LinearGauge1.TickAlternateLineLength = 10;
+            this.oS_LinearGauge1.TickEndBias = 10;
+            this.oS_LinearGauge1.TickFrequency = 1;
+            this.oS_LinearGauge1.TickLineLength = 5;
+            this.oS_LinearGauge1.TickSide = OSGaugesLib.TickSide.Both;
+            this.oS_LinearGauge1.TickStartBias = 10;
+            this.oS_LinearGauge1.Value = 0F;
+            this.oS_LinearGauge1.Vertical = true;
             // 
             // osG_NumericDisplay3
             // 
@@ -204,23 +226,6 @@
             this.osG_Round1.TrimColor = System.Drawing.SystemColors.ControlDark;
             this.osG_Round1.TrimWidth = 6;
             this.osG_Round1.Value = 50;
-            // 
-            // oS_LinearGauge1
-            // 
-            this.oS_LinearGauge1.Location = new System.Drawing.Point(483, 243);
-            this.oS_LinearGauge1.Maximum = 10;
-            this.oS_LinearGauge1.Minimum = 0;
-            this.oS_LinearGauge1.Name = "oS_LinearGauge1";
-            this.oS_LinearGauge1.Size = new System.Drawing.Size(30, 100);
-            this.oS_LinearGauge1.TabIndex = 10;
-            this.oS_LinearGauge1.TickAlternateFrequency = 4;
-            this.oS_LinearGauge1.TickAlternateLineLength = 10;
-            this.oS_LinearGauge1.TickEndBias = 10;
-            this.oS_LinearGauge1.TickFrequency = 1;
-            this.oS_LinearGauge1.TickLineLength = 5;
-            this.oS_LinearGauge1.TickStartBias = 10;
-            this.oS_LinearGauge1.Value = 6;
-            this.oS_LinearGauge1.Vertical = true;
             // 
             // Form1
             // 
