@@ -54,6 +54,12 @@
     <Compile Include="OSG_Round_Fancy.Designer.cs">
       <DependentUpon>OSG_Round_Fancy.cs</DependentUpon>
     </Compile>
+    <Compile Include="OS_LinearGauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OS_LinearGauge.Designer.cs">
+      <DependentUpon>OS_LinearGauge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
