@@ -110,6 +110,36 @@ namespace OSGaugesLib
         #endregion
 
 
+        #region property CenterColor : Color
+        private Color _CenterColor=Color.White;
+        public Color CenterColor
+        {
+            get { return _CenterColor; }
+            set { _CenterColor = value; }
+        }
+        #endregion
+
+        #region property SurroundColor : Color
+        private Color _SurroundColor=Color.Silver;
+        public Color SurroundColor
+        {
+            get { return _SurroundColor; }
+            set { _SurroundColor = value; }
+        }
+        #endregion
+
+
+        private void DrawOrnaments(Graphics g)
+        {
+            
+            RectangleF rf = new Rectangle (0, 0, Width, Height);
+            RectangleF rf2 = rf;
+            rf2.Height /= 2;
+            LinearGradientBrush lgb = new LinearGradientBrush (rf2, _CenterColor, _SurroundColor, 270f);
+            lgb.WrapMode = WrapMode.TileFlipXY;
+            g.FillRectangle (lgb, rf);
+
+        }
 
         private void DrawTicks(Graphics g)
         {
@@ -173,6 +203,7 @@ namespace OSGaugesLib
         protected override void OnPaint(PaintEventArgs e)
         {
             //base.OnPaint(e);
+            DrawOrnaments (e.Graphics);
             DrawTicks(e.Graphics);
             DrawValue(e.Graphics);
             
