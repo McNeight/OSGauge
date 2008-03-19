@@ -232,7 +232,7 @@ namespace OSGaugesLib
 			float _radiusFrom = _radius0;
 			float _radiusTo = _radius2;
 
-			for (int i = _Minimum; i < _Maximum; i++)
+			for (int i = _Minimum; i <= _Maximum; i++)
 			{
 				if (i % _TickFrequency == 0)
 				{
