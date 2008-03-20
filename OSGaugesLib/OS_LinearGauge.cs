@@ -173,18 +173,50 @@ namespace OSGaugesLib
         public TickSide TickSide
         {
             get { return _TickSide; }
-            set { _TickSide = value; }
+            set { _TickSide = value; Invalidate ( ); }
         }
         #endregion
 
         #region property IndicatorType : IndicatorType
-        private IndicatorType _IndicatorType;
-        [DefaultValue(IndicatorType.Fill)]
+        private IndicatorType _IndicatorType=IndicatorType.Line;
+        [DefaultValue (IndicatorType.Line)]
         [Category("LinearGauge")]
         public IndicatorType IndicatorType
         {
             get { return _IndicatorType; }
-            set { _IndicatorType = value; }
+            set { _IndicatorType = value; Invalidate ( ); }
+        }
+        #endregion
+
+        #region property IndicatorFillColor : Color
+        private Color _IndicatorFillColor=Color.Black;
+        [Category("LinearGauge")]
+        public Color IndicatorFillColor
+        {
+            get { return _IndicatorFillColor; }
+            set { _IndicatorFillColor = value; Invalidate ( ); }
+        }
+        #endregion
+
+        #region property IndicatorFillAlpha : byte
+        private byte _IndicatorFillAlpha=255;
+        [Category ("LinearGauge")]
+        [DefaultValue((byte)255)]
+        public byte IndicatorFillAlpha
+        {
+            get { return _IndicatorFillAlpha; }
+            set { _IndicatorFillAlpha = value; Invalidate ( ); }
+        }
+        #endregion
+        
+        #region property IndicatorWidth : int
+        private int _IndicatorWidth=10;
+        [Category ("LinearGauge")]
+        [DefaultValue(10)]
+        public int IndicatorWidth
+        {
+            get { return _IndicatorWidth; }
+            set { _IndicatorWidth = value; Invalidate ( ); }
         }
         #endregion
 
@@ -302,7 +334,7 @@ namespace OSGaugesLib
         private void DrawValue(Graphics g)
         {
 
-            //int _value = Height - (_TickStartBias + ((Height - (_TickEndBias + _TickStartBias)) * _Value / (_Maximum - _Minimum)));
+            
             int y;
             if (Reverse)
             {
@@ -313,7 +345,30 @@ namespace OSGaugesLib
                 y = (int)(Height - (_TickStartBias + ((Height - (_TickEndBias + _TickStartBias)) * _Value / (_Maximum - _Minimum))));
             }
 
-            g.DrawLine(Pens.Red, _TickAlternateLineLength + 5, y, Width, y);
+
+            if ( _IndicatorType == IndicatorType.Fill )
+            {
+                Rectangle r;
+                if ( Reverse )
+                {
+                    r = new Rectangle (Width / 2 - _IndicatorWidth / 2, _TickStartBias, _IndicatorWidth, y - _TickStartBias);
+                }
+                else
+                {
+                    r = new Rectangle (Width / 2 - _IndicatorWidth / 2, y, _IndicatorWidth, Height - y - _TickStartBias);
+                }
+
+
+                g.FillRectangle (new SolidBrush (Color.FromArgb (_IndicatorFillAlpha, _IndicatorFillColor)), r);
+
+            }
+            else
+                if ( _IndicatorType == IndicatorType.Line )
+                {
+                    g.DrawLine (Pens.Red, _TickAlternateLineLength + 5, y, Width, y);
+                }
+
+
 
         }
 
