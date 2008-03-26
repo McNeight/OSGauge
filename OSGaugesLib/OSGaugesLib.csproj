@@ -54,6 +54,18 @@
     <Compile Include="OSG_Round_Fancy.Designer.cs">
       <DependentUpon>OSG_Round_Fancy.cs</DependentUpon>
     </Compile>
+    <Compile Include="OS_DoubleBuffered.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OS_DoubleBuffered.Designer.cs">
+      <DependentUpon>OS_DoubleBuffered.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OS_Led.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OS_Led.Designer.cs">
+      <DependentUpon>OS_Led.cs</DependentUpon>
+    </Compile>
     <Compile Include="OS_LinearGauge.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -70,6 +82,10 @@
     <EmbeddedResource Include="OSG_Round.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OSG_Round.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OS_Led.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OS_Led.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
