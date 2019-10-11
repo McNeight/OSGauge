@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("OSGaugeTest")]
-[assembly: AssemblyCopyright("Copyright © 2008")]
+[assembly: AssemblyCopyright("Copyright © 2008, 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

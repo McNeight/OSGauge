@@ -1,6 +1,6 @@
-namespace OSGaugesLib
+namespace OSGauge
 {
-    partial class OSG_NumericDisplay
+    partial class RoundFancy
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,7 @@ namespace OSGaugesLib
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // OSG_NumericDisplay
-            // 
-            //this.Paint += new System.Windows.Forms.PaintEventHandler(this.OSG_NumericDisplay_Paint);
-            this.Resize += new System.EventHandler(this.OSG_NumericDisplay_Resize);
-            this.ResumeLayout(false);
-
+            components = new System.ComponentModel.Container();
         }
 
         #endregion

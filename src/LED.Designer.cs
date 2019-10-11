@@ -1,6 +1,6 @@
-namespace OSGaugesLib
+﻿namespace OSGauge
 {
-    partial class OS_Led
+    partial class LED
     {
         /// <summary>
         /// Required designer variable.

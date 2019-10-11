@@ -1,6 +1,6 @@
-namespace OSGaugesLib
+namespace OSGauge
 {
-    partial class OS_LinearGauge
+    partial class Round
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,18 @@ namespace OSGaugesLib
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // OSG_Round
+            // 
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.OSG_Round_Paint);
+            this.Resize += new System.EventHandler(this.OSG_Round_Resize);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
     }
 }

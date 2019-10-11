@@ -1,6 +1,6 @@
-namespace OSGaugesLib
+namespace OSGauge
 {
-    partial class OSG_Round
+    partial class DoubleBuffered
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,9 @@ namespace OSGaugesLib
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // OSG_Round
-            // 
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.OSG_Round_Paint);
-            this.Resize += new System.EventHandler(this.OSG_Round_Resize);
-            this.ResumeLayout(false);
-
+            components = new System.ComponentModel.Container();
         }
 
         #endregion
-
     }
 }

@@ -44,57 +44,57 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OSG_NumericDisplay.cs">
+    <Compile Include="IRound.cs" />
+    <Compile Include="NumericDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OSG_NumericDisplay.Designer.cs">
-      <DependentUpon>OSG_NumericDisplay.cs</DependentUpon>
+    <Compile Include="NumericDisplay.Designer.cs">
+      <DependentUpon>NumericDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="OSG_IRound.cs" />
-    <Compile Include="OSG_Round.cs">
+    <Compile Include="Round.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OSG_Round.Designer.cs">
-      <DependentUpon>OSG_Round.cs</DependentUpon>
+    <Compile Include="Round.Designer.cs">
+      <DependentUpon>Round.cs</DependentUpon>
     </Compile>
-    <Compile Include="OSG_Round_Fancy.cs">
+    <Compile Include="RoundFancy.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OSG_Round_Fancy.Designer.cs">
-      <DependentUpon>OSG_Round_Fancy.cs</DependentUpon>
+    <Compile Include="RoundFancy.Designer.cs">
+      <DependentUpon>RoundFancy.cs</DependentUpon>
     </Compile>
-    <Compile Include="OS_DoubleBuffered.cs">
+    <Compile Include="DoubleBuffered.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OS_DoubleBuffered.Designer.cs">
-      <DependentUpon>OS_DoubleBuffered.cs</DependentUpon>
+    <Compile Include="DoubleBuffered.Designer.cs">
+      <DependentUpon>DoubleBuffered.cs</DependentUpon>
     </Compile>
-    <Compile Include="OS_Led.cs">
+    <Compile Include="LED.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OS_Led.Designer.cs">
-      <DependentUpon>OS_Led.cs</DependentUpon>
+    <Compile Include="LED.Designer.cs">
+      <DependentUpon>LED.cs</DependentUpon>
     </Compile>
-    <Compile Include="OS_LinearGauge.cs">
+    <Compile Include="Linear.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OS_LinearGauge.Designer.cs">
-      <DependentUpon>OS_LinearGauge.cs</DependentUpon>
+    <Compile Include="Linear.Designer.cs">
+      <DependentUpon>Linear.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OSG_NumericDisplay.resx">
+    <EmbeddedResource Include="NumericDisplay.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>OSG_NumericDisplay.cs</DependentUpon>
+      <DependentUpon>NumericDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OSG_Round.resx">
+    <EmbeddedResource Include="Round.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>OSG_Round.cs</DependentUpon>
+      <DependentUpon>Round.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OS_Led.resx">
+    <EmbeddedResource Include="LED.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>OS_Led.cs</DependentUpon>
+      <DependentUpon>LED.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

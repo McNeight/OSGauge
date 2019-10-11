@@ -39,6 +39,8 @@ namespace OSGaugeTest
         private void TrackBar2_Scroll(object sender, EventArgs e)
         {
             this.osG_NumericDisplay1.Value = (float)this.trackBar2.Value / 100;
+            this.osG_NumericDisplay2.Value = (float)this.trackBar2.Value / 100;
+            this.osG_NumericDisplay3.Value = (float)this.trackBar2.Value / 100;
         }
     }
 }

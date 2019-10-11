@@ -1,6 +1,6 @@
-namespace OSGaugesLib
+namespace OSGauge
 {
-    partial class OS_DoubleBuffered
+    partial class NumericDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,14 @@ namespace OSGaugesLib
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // OSG_NumericDisplay
+            // 
+            //this.Paint += new System.Windows.Forms.PaintEventHandler(this.OSG_NumericDisplay_Paint);
+            this.Resize += new System.EventHandler(this.OSG_NumericDisplay_Resize);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

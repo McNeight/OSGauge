@@ -1,6 +1,6 @@
-namespace OSGaugesLib
+namespace OSGauge
 {
-    partial class OSG_Round_Fancy
+    partial class Linear
     {
         /// <summary>
         /// Required designer variable.
