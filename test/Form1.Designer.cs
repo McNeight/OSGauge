@@ -1,4 +1,4 @@
-﻿namespace OSGaugesTest
+﻿namespace OSGaugeTest
 {
     partial class Form1
     {
@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container ( );
             this.trackBar1 = new System.Windows.Forms.TrackBar ( );
             this.trackBar2 = new System.Windows.Forms.TrackBar ( );
-            this.oS_LinearGauge1 = new OSGaugesLib.OS_LinearGauge (this.components);
-            this.osG_NumericDisplay3 = new OSGaugesLib.OSG_NumericDisplay (this.components);
-            this.osG_NumericDisplay1 = new OSGaugesLib.OSG_NumericDisplay (this.components);
-            this.osG_NumericDisplay2 = new OSGaugesLib.OSG_NumericDisplay (this.components);
-            this.osG_Round3 = new OSGaugesLib.OSG_Round (this.components);
-            this.osG_Round2 = new OSGaugesLib.OSG_Round (this.components);
-            this.osG_Round1 = new OSGaugesLib.OSG_Round (this.components);
+            this.oS_LinearGauge1 = new OSGauge.OS_LinearGauge (this.components);
+            this.osG_NumericDisplay3 = new OSGauge.OSG_NumericDisplay (this.components);
+            this.osG_NumericDisplay1 = new OSGauge.OSG_NumericDisplay (this.components);
+            this.osG_NumericDisplay2 = new OSGauge.OSG_NumericDisplay (this.components);
+            this.osG_Round3 = new OSGauge.OSG_Round (this.components);
+            this.osG_Round2 = new OSGauge.OSG_Round (this.components);
+            this.osG_Round1 = new OSGauge.OSG_Round (this.components);
             ( (System.ComponentModel.ISupportInitialize) ( this.trackBar1 ) ).BeginInit ( );
             ( (System.ComponentModel.ISupportInitialize) ( this.trackBar2 ) ).BeginInit ( );
             this.SuspendLayout ( );
@@ -48,7 +48,7 @@
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size (236, 42);
             this.trackBar1.TabIndex = 3;
-            this.trackBar1.Scroll += new System.EventHandler (this.trackBar1_Scroll);
+            this.trackBar1.Scroll += new System.EventHandler (this.TrackBar1_Scroll);
             // 
             // trackBar2
             // 
@@ -58,14 +58,14 @@
             this.trackBar2.Size = new System.Drawing.Size (195, 42);
             this.trackBar2.TabIndex = 8;
             this.trackBar2.TickFrequency = 100000;
-            this.trackBar2.Scroll += new System.EventHandler (this.trackBar2_Scroll);
+            this.trackBar2.Scroll += new System.EventHandler (this.TrackBar2_Scroll);
             // 
             // oS_LinearGauge1
             // 
             this.oS_LinearGauge1.CenterColor = System.Drawing.Color.WhiteSmoke;
             this.oS_LinearGauge1.IndicatorFillAlpha = ( (byte) ( 50 ) );
             this.oS_LinearGauge1.IndicatorFillColor = System.Drawing.Color.Black;
-            this.oS_LinearGauge1.IndicatorType = OSGaugesLib.IndicatorType.Fill;
+            this.oS_LinearGauge1.IndicatorType = OSGauge.IndicatorType.Fill;
             this.oS_LinearGauge1.Location = new System.Drawing.Point (557, 304);
             this.oS_LinearGauge1.Maximum = 10;
             this.oS_LinearGauge1.Minimum = 0;
@@ -79,7 +79,7 @@
             this.oS_LinearGauge1.TickEndBias = 50;
             this.oS_LinearGauge1.TickFrequency = 1;
             this.oS_LinearGauge1.TickLineLength = 5;
-            this.oS_LinearGauge1.TickSide = OSGaugesLib.TickSide.Left;
+            this.oS_LinearGauge1.TickSide = OSGauge.TickSide.Left;
             this.oS_LinearGauge1.TickStartBias = 20;
             this.oS_LinearGauge1.Value = 8F;
             this.oS_LinearGauge1.Vertical = true;
@@ -252,18 +252,18 @@
             this.PerformLayout ( );
 
         }
-        private OSGaugesLib.OSG_Round osG_Round3;
-        private OSGaugesLib.OSG_Round osG_Round2;
+        private OSGauge.OSG_Round osG_Round3;
+        private OSGauge.OSG_Round osG_Round2;
 
         #endregion
 
         private System.Windows.Forms.TrackBar trackBar1;
-        private OSGaugesLib.OSG_Round osG_Round1;
+        private OSGauge.OSG_Round osG_Round1;
         private System.Windows.Forms.TrackBar trackBar2;
-        private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay2;
-        private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay1;
-        private OSGaugesLib.OSG_NumericDisplay osG_NumericDisplay3;
-        private OSGaugesLib.OS_LinearGauge oS_LinearGauge1;
+        private OSGauge.OSG_NumericDisplay osG_NumericDisplay2;
+        private OSGauge.OSG_NumericDisplay osG_NumericDisplay1;
+        private OSGauge.OSG_NumericDisplay osG_NumericDisplay3;
+        private OSGauge.OS_LinearGauge oS_LinearGauge1;
 
 
 
